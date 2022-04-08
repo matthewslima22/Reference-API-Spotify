@@ -1,0 +1,865 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Reference publish",
+    "version": "1.0",
+    "summary": "API da spotify",
+    "description": "endpoints de playlist"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/v1/playlists/playlist_id": {
+      "parameters": [],
+      "get": {
+        "summary": "Consult playlist",
+        "tags": [],
+        "responses": {
+          "200": {
+            "description": "Successful playlist returned.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "collaborative": {
+                      "description": "If the owner allows other users to modify the playlist, the value is `true`. Otherwise, the value is `false`.",
+                      "type": "boolean"
+                    },
+                    "description": {
+                      "type": [
+                        "string",
+                        "null"
+                      ],
+                      "description": "Description of the playlist. Returned only for modified, checked lists. Otherwise, it will be null."
+                    },
+                    "external_urls": {
+                      "type": "object",
+                      "description": "Known external addresses (URLs) for this playlist.",
+                      "properties": {
+                        "spotify": {
+                          "type": "string",
+                          "description": "The address (URL) of [Spotify](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)."
+                        }
+                      }
+                    },
+                    "followers": {
+                      "type": "object",
+                      "description": "Follower information.",
+                      "properties": {
+                        "href": {
+                          "type": "string",
+                          "description": "Always set null, since the Web API does not support it."
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "Total number of followers."
+                        }
+                      }
+                    },
+                    "href": {
+                      "type": "string",
+                      "description": "Address (URL) giving all the details of the playlist."
+                    },
+                    "id": {
+                      "type": "string",
+                      "description": "Spotify identification code for the playlist. For more information go to [here](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)."
+                    },
+                    "images": {
+                      "type": "array",
+                      "description": "Images for the playlist. The array can be empty or contain up to three images, which will be returned by size in descending order. For more information, see [here](https://developer.spotify.com/documentation/general/guides/working-with-playlists/).",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "url": {
+                            "type": "string",
+                            "description": "Source address (URL) of the image."
+                          },
+                          "height": {
+                            "type": "integer",
+                            "description": "Height of the image in pixels."
+                          },
+                          "width": {
+                            "type": "integer",
+                            "description": "Width of the image in pixels."
+                          }
+                        },
+                        "required": [
+                          "url",
+                          "height",
+                          "width"
+                        ]
+                      }
+                    },
+                    "name": {
+                      "description": "Playlist name.",
+                      "type": "string"
+                    },
+                    "owner": {
+                      "allOf": [
+                        {
+                          "description": "External public addresses (URLs) known to this user.",
+                          "properties": {
+                            "external_urls": {
+                              "type": "object",
+                              "description": "Known external addresses (URLs) for this playlist.",
+                              "properties": {
+                                "spotify": {
+                                  "type": "string",
+                                  "description": "The address (URL) of [Spotify.](https://developer.spotify.com/documentation/web-api/#spotify-uris-and-ids)"
+                                }
+                              }
+                            },
+                            "followers": {
+                              "type": "object",
+                              "description": "Information about the followers of this user.",
+                              "properties": {
+                                "href": {
+                                  "type": "string",
+                                  "description": "Always set null, since the Web API does not support it."
+                                },
+                                "total": {
+                                  "type": "integer",
+                                  "description": "Total number of followers."
+                                }
+                              }
+                            },
+                            "href": {
+                              "type": "string",
+                              "description": "Final address for the user."
+                            },
+                            "id": {
+                              "type": "string",
+                              "description": "User identification code."
+                            },
+                            "type": {
+                              "type": "string",
+                              "description": "Object Type.",
+                              "enum": [
+                                "user"
+                              ]
+                            },
+                            "uri": {
+                              "type": "string",
+                              "description": "URI for this user."
+                            }
+                          }
+                        },
+                        {
+                          "properties": {
+                            "display_name": {
+                              "type": "string",
+                              "description": "Name displayed in the user's profile."
+                            }
+                          }
+                        }
+                      ],
+                      "description": "User who owns the playlist.",
+                      "type": "object"
+                    },
+                    "public": {
+                      "type": "boolean",
+                      "description": "If the playlist is public, the value is `true`. If it is private, the value is `false`. For more information, see [here](https://developer.spotify.com/documentation/general/guides/working-with-playlists/)."
+                    },
+                    "snapshot_id": {
+                      "type": "string",
+                      "description": "Current playlist identifier."
+                    },
+                    "tracks": {
+                      "type": "object",
+                      "description": "Playlist tracks.",
+                      "properties": {
+                        "href": {
+                          "type": "string",
+                          "description": "Address (URL) returning all the results of the request."
+                        },
+                        "items": {
+                          "type": "array",
+                          "description": "Requested Content.",
+                          "items": {
+                            "type": "string"
+                          }
+                        },
+                        "limit": {
+                          "type": "integer",
+                          "description": "Maximum number of items in the response."
+                        },
+                        "next": {
+                          "type": "string",
+                          "description": "Address (URL) for the next page of items."
+                        },
+                        "offset": {
+                          "type": "integer",
+                          "description": "Returned items group."
+                        },
+                        "previous": {
+                          "type": "string",
+                          "description": "Address (URL) to the previous page of items."
+                        },
+                        "total": {
+                          "type": "integer",
+                          "description": "Total items available."
+                        }
+                      },
+                      "required": [
+                        "href",
+                        "items",
+                        "limit",
+                        "next",
+                        "offset",
+                        "previous",
+                        "total"
+                      ]
+                    },
+                    "type": {
+                      "type": "string",
+                      "description": "Playlist type."
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "Address (URL) for the playlist."
+                    }
+                  }
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "collaborative": true,
+                      "description": "string",
+                      "external_urls": {
+                        "spotify": "string"
+                      },
+                      "followers": {
+                        "href": "string",
+                        "total": 0
+                      },
+                      "href": "string",
+                      "id": "string",
+                      "images": [
+                        {
+                          "url": "string",
+                          "height": 0,
+                          "width": 0
+                        }
+                      ],
+                      "name": "string",
+                      "owner": {
+                        "external_urls": {
+                          "spotify": "string"
+                        },
+                        "followers": {
+                          "href": "string",
+                          "total": 0
+                        },
+                        "href": "string",
+                        "id": "string",
+                        "type": "user",
+                        "uri": "string",
+                        "display_name": "string"
+                      },
+                      "public": true,
+                      "snapshot_id": "string",
+                      "tracks": {
+                        "href": "string",
+                        "items": [
+                          {
+                            "limit": 0,
+                            "next": "string",
+                            "offset": 0,
+                            "previous": "string",
+                            "total": 0
+                          }
+                        ]
+                      },
+                      "type": "string",
+                      "uri": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Expired or revoked token.\nThis can happen if the user has revoked a token or if the access token has expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "object"
+                        },
+                        "status": {
+                          "description": "The HTTP status code (also returned in the response header). For more information go to [here](https://developer.spotify.com/documentation/web-api/#response-status-codes).",
+                          "type": "integer"
+                        },
+                        "message": {
+                          "type": "string",
+                          "description": "Error message."
+                        }
+                      },
+                      "required": [
+                        "error",
+                        "status",
+                        "message"
+                      ]
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "error": {},
+                      "status": 0,
+                      "message": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Incorrect OAuth Request.\nUnfortunately, re-authenticating the user will not help here. ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "object",
+                          "required": [
+                            "status",
+                            "message"
+                          ],
+                          "properties": {
+                            "status": {
+                              "type": "integer",
+                              "description": "The HTTP status code (also returned in the response header). For more information go to [here](https://developer.spotify.com/documentation/web-api/#response-status-codes)."
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "Error message."
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "error": {
+                        "status": 0,
+                        "message": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The application has exceeded its rate limits.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "erro": {
+                          "type": "object",
+                          "required": [
+                            "status",
+                            "message"
+                          ],
+                          "properties": {
+                            "status": {
+                              "type": "integer",
+                              "description": "The HTTP status code (also returned in the response header). For more information go to [here](https://developer.spotify.com/documentation/web-api/#response-status-codes)."
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "Error message."
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "erro"
+                      ]
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "erro": {
+                        "status": 0,
+                        "message": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "operationId": "get-playlist",
+        "description": "Lists the owner user's playlist. ",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "additional_types": {
+                    "type": "string",
+                    "description": "Lists a track or episode, in addition to the default track (music).",
+                    "default": "track",
+                    "enum": [
+                      "track",
+                      "episode"
+                    ]
+                  },
+                  "fields": {
+                    "type": "string",
+                    "description": "Filters for track and episode queries. (In case of filter exclusion just put an exclamation mark as prefix).",
+                    "example": "items(acrescentado_por.id,powerslave(iron mainden,href,powerslave(nome,href))"
+                  },
+                  "market": {
+                    "type": "string",
+                    "description": "Country ID code in ISO format [3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). If the country code is specified, only the contents available in it will be returned.",
+                    "example": "ES"
+                  }
+                }
+              }
+            }
+          },
+          "description": ""
+        }
+      },
+      "put": {
+        "summary": "Update playlist",
+        "operationId": "put-users-playlist_id",
+        "responses": {
+          "200": {
+            "description": "Instant identification for the playlist.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "snapshot_id": {
+                      "type": "string",
+                      "description": "Identify the playlist, to which you want to make changes."
+                    }
+                  }
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "snapshot_id": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Expired or revoked token.\nThis can happen if the user has revoked a token or if the access token has expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "object",
+                          "required": [
+                            "status",
+                            "message"
+                          ],
+                          "properties": {
+                            "status": {
+                              "type": "integer",
+                              "description": "The HTTP status code (also returned in the response header). For more information go to [here](https://developer.spotify.com/documentation/web-api/#response-status-codes)."
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "Error message."
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "error": {
+                        "status": 0,
+                        "message": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Incorrect OAuth Request.\nUnfortunately, re-authenticating the user will not help here.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "object",
+                          "required": [
+                            "status",
+                            "message"
+                          ],
+                          "properties": {
+                            "status": {
+                              "type": "integer",
+                              "description": "The HTTP status code (also returned in the response header). For more information go to [here](https://developer.spotify.com/documentation/web-api/#response-status-codes)."
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "Error message."
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "error": {
+                        "status": 0,
+                        "message": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The application has exceeded its rate limits.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "object",
+                          "required": [
+                            "status",
+                            "message"
+                          ],
+                          "properties": {
+                            "status": {
+                              "type": "integer",
+                              "description": "The HTTP status code (also returned in the response header). For more information go to [here](https://developer.spotify.com/documentation/web-api/#response-status-codes)."
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "Error message."
+                            }
+                          }
+                        }
+                      },
+                      "required": [
+                        "error"
+                      ]
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "error": {
+                        "status": 0,
+                        "message": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Updates the playlist by reordering or replacing items in the playlist.\n\n> #### Note\n> Replace and reorder are mutually exclusive operations that share the same endpoint, but have different parameters. \n\n> To reorder items, include `range_start`, `insert_before`, `range_length` and `snapshot_id` in the body of the request.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "uris": {
+                    "type": [
+                      "string",
+                      "array"
+                    ],
+                    "description": "List of tracks or episodes (maximum of 100 items can be defined in one request).",
+                    "items": {}
+                  },
+                  "range_start": {
+                    "type": "integer",
+                    "description": "Position where articles should be inserted."
+                  },
+                  "insert_before": {
+                    "type": "integer",
+                    "description": "The number of articles to be reordered.",
+                    "default": 1
+                  },
+                  "snapshot_id": {
+                    "type": "string",
+                    "description": "Identify the playlist, to which you want to make changes."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "type": "string",
+              "example": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ"
+            },
+            "in": "query",
+            "name": "uris",
+            "description": "List of tracks or episodes (maximum of 100 items can be defined in one request)."
+          }
+        ]
+      },
+      "post": {
+        "summary": "Add Items to the playlist",
+        "operationId": "post-users-playlist_id",
+        "responses": {
+          "200": {
+            "description": "Instant identification for the playlist",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "snapshot_id": {
+                      "type": "string",
+                      "description": "Identify the playlist, to which you want to make changes."
+                    }
+                  }
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "snapshot_id": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Expired or revoked token.\nThis can happen if the user has revoked a token or if the access token has expired.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "object",
+                          "properties": {
+                            "status": {
+                              "type": "integer",
+                              "description": "The HTTP status code (also returned in the response header). For more information go to [here](https://developer.spotify.com/documentation/web-api/#response-status-codes)."
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "Error message."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "error": {
+                        "status": 0,
+                        "message": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Incorrect OAuth Request.\nUnfortunately, re-authenticating the user will not help here. ",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "object",
+                          "properties": {
+                            "status": {
+                              "type": "integer",
+                              "description": "The HTTP status code (also returned in the response header). For more information go to [here](https://developer.spotify.com/documentation/web-api/#response-status-codes)."
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "Error message."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "error": {
+                        "status": 0,
+                        "message": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "The application has exceeded its rate limits.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "object",
+                          "properties": {
+                            "status": {
+                              "type": "integer",
+                              "description": "The HTTP status code (also returned in the response header). For more information go to [here](https://developer.spotify.com/documentation/web-api/#response-status-codes)."
+                            },
+                            "message": {
+                              "type": "string",
+                              "description": "Error message."
+                            }
+                          }
+                        }
+                      }
+                    }
+                  ],
+                  "type": "object"
+                },
+                "examples": {
+                  "Example": {
+                    "value": {
+                      "error": {
+                        "status": 0,
+                        "message": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Adds one or more items to a user's playlist.",
+        "parameters": [
+          {
+            "schema": {
+              "type": "integer",
+              "example": 1
+            },
+            "in": "query",
+            "name": "position",
+            "description": "Position to insert the items. (Index based on 0, i.e. 0 = 1st position)."
+          },
+          {
+            "schema": {
+              "type": "string",
+              "example": "spotify:track:4iV5W9uYEdYUVa79Axb7Rh,spotify:track:1301WleyT98MSxVHPZCA6M,spotify:episode:512ojhOuo1ktJprKbVcKyQ"
+            },
+            "in": "query",
+            "name": "uris",
+            "description": "List of tracks or episodes. (Maximum of 100 items can be set in one order)."
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "uris": {
+                    "type": "string",
+                    "description": "JSON array of Spotify URIs to add. (Maximum of 100 items can be added per request).",
+                    "example": "[\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\", \"spotify:track:1301WleyT98MSxVHPZCA6M\", \"spotify:episode:512ojhOuo1ktJprKbVcKyQ\"]}"
+                  },
+                  "position": {
+                    "type": "integer",
+                    "description": "Position to insert the items. (Index based on 0, i.e. 0 = 1st position).",
+                    "example": 1
+                  }
+                }
+              },
+              "examples": {
+                "Example": {
+                  "value": {
+                    "uris": "[\"spotify:track:4iV5W9uYEdYUVa79Axb7Rh\", \"spotify:track:1301WleyT98MSxVHPZCA6M\", \"spotify:episode:512ojhOuo1ktJprKbVcKyQ\"]}",
+                    "position": 1
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}

@@ -1,16 +1,16 @@
 # Introdução
 
-Neste guia, você encontrará informações tecnícas para que você possa integrar sua aplicação com a Web API do spotify.
+Neste guia, você encontrará informações tecnícas sobre API Web do Spotify.
 
 ---
 
 Aqui estão documentados os seguintes endpoints da playlist:
 
-- [Consultar lista de reprodução](https://matthewsls.stoplight.io/docs/api-publish-reference/b3A6NDAxMjI0MDY-consultar-lista-de-reproducao)
+- [Consultar lista de reprodução](https://matthewsls.stoplight.io/docs/api-publish-reference/b3A6NDc1NDgxMTc-consultar-lista-de-reproducao)
 
-- [Atualizar lista de reprodução](https://matthewsls.stoplight.io/docs/api-publish-reference/b3A6NDAxMjI0MDc-atualizar-lista-de-reproducao)
+- [Atualizar lista de reprodução](https://matthewsls.stoplight.io/docs/api-publish-reference/b3A6NDc1NDgxMTg-atualizar-lista-de-reproducao)
 
-- [Adicionar itens à lista de reprodução](https://matthewsls.stoplight.io/docs/api-publish-reference/b3A6NDAxMjI0MDg-adicionar-itens-a-lista-de-reproducao)
+- [Adicionar itens à lista de reprodução](https://matthewsls.stoplight.io/docs/api-publish-reference/b3A6NDc1NDgxMTk-adicionar-itens-a-lista-de-reproducao)
 
 
 
